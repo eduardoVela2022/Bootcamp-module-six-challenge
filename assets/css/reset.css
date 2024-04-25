@@ -1,0 +1,59 @@
+/* Margin and padding is removed for all elements, and border box dox sizing is applied to them */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* The html element is given all the height that is available in the user’s screen */
+html {
+  height: 100%;
+}
+
+/* The body element is given a minimum height of 100% and a line height of 1
+    The website’s font families are also assigned here */
+body {
+  min-height: 100%;
+  line-height: 1;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* All header elements start with the default font size */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+
+/* All this elements start with the default font size and font family */
+input,
+select,
+option,
+optgroup,
+textarea,
+button,
+pre,
+code {
+  font-size: 100%;
+  font-family: inherit;
+}
+
+/* Removes the bullet points of the ordered and unordered list elements */
+ol,
+ul {
+  list-style: none;
+}
+
+/* The anchor elements will not be underlined */
+a {
+  text-decoration: none;
+}
+
+/* Removes the default border and background color of the button */
+button {
+  border: none;
+  background-color: inherit;
+}
