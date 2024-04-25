@@ -9,38 +9,67 @@
     <!-- CSS -->
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/index.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <!-- Body -->
   <body>
     <!-- Header -->
-    <header class="box">
+    <header id="header-box" class="box">
       <h2 id="header-title">Web Weather</h2>
     </header>
 
-    <div id="grid">
+    <div class="sidebar-grid-layout">
       <!-- Sidebar -->
-      <aside class="box">
+      <aside class="box column">
         <!-- Search Form -->
         <div>
-          <form class="column">
-            <label for="city-field">Search for a city:</label>
-            <input id="city-field" type="search" placeholder="San Diego" />
-            <button type="submit">Search</button>
+          <form id="search-form" class="column">
+            <label class="label" for="city-field">Search for a city:</label>
+            <input
+              id="city-field"
+              class="form-field"
+              type="text"
+              placeholder="San Diego"
+            />
+            <button class="button" type="submit">Search</button>
           </form>
         </div>
 
         <!-- Search History -->
-        <div>
-          <ul>
-            <li>Atlanta</li>
-            <li>Denver</li>
-            <li>Seattle</li>
-            <li>San Francisco</li>
-            <li>Orlando</li>
-            <li>New York</li>
-            <li>Chicago</li>
-            <li>Austin</li>
+        <div class="column">
+          <p class="label">Search history:</p>
+          <ul class="column">
+            <li class="search-history-item">
+              <button>Atlanta</button>
+            </li>
+            <li class="search-history-item">
+              <button>Denver</button>
+            </li>
+            <li class="search-history-item">
+              <button>Seattle</button>
+            </li>
+            <li class="search-history-item">
+              <button>San Francisco</button>
+            </li>
+            <li class="search-history-item">
+              <button>Orlando</button>
+            </li>
+            <li class="search-history-item">
+              <button>New York</button>
+            </li>
+            <li class="search-history-item">
+              <button>Chicago</button>
+            </li>
+            <li class="search-history-item">
+              <button>Austin</button>
+            </li>
           </ul>
         </div>
       </aside>
