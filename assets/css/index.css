@@ -115,7 +115,7 @@
 }
 
 /* Today Data */
-#today-data div {
+#today-forecast-data div {
   gap: 0.5rem;
 }
 
@@ -128,7 +128,9 @@
 
 /* Forecast List */
 #forecast-list {
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 1rem;
 }
 
 /* Forecast List Item */
@@ -163,7 +165,71 @@
   border-top: 1px solid var(--website-text-color);
 }
 
+#footer-box a:hover {
+  text-decoration: underline;
+}
+
 /* Footer Title */
 #footer-title {
   font-weight: 500;
+}
+
+/* Changes the forecast list grid from 5 columns to 3 columns. 
+Also a row gap is added to separate the rows of the grid. */
+@media screen and (max-width: 1285px) {
+  #forecast-list {
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 1rem;
+  }
+}
+
+/* Changes the forecast list grid from 3 columns to 2 columns. */
+@media screen and (max-width: 924px) {
+  #forecast-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 744px) {
+  /* Changes the sidebar grid layout  from 2 columns to 1 columns. 
+  And changes it from 1 row to 2 rows. This is done to achieve a more mobile friendly layout. */
+  .sidebar-grid-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 30rem 1fr;
+  }
+
+  /* Removes the right border of the aside and adds one to its bottom. 
+  Removes the bottom padding of the aside. */
+  .sidebar-grid-layout aside {
+    border-right: none;
+    border-bottom: 1px solid var(--website-text-color);
+    padding-bottom: 0;
+  }
+
+  /* Makes the search history list scrollable, 
+  and removes the default scroll bar that is added by the overflow-y attribute. */
+  #search-history-list {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    padding-bottom: 4rem;
+  }
+
+  #search-history-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Changes the city label element  font size from 2.25rem to 1.5rem. */
+  #city-label {
+    font-size: 1.5rem;
+  }
+
+  /* Changes the forecast list grid from 2 columns to 1 columns. */
+  #forecast-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* Changes the footer box elements font size from 1rem to 0.75rem. */
+  #footer-box {
+    font-size: 0.75rem;
+  }
 }
