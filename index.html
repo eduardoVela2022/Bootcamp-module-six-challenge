@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/index.css" />
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -31,6 +32,7 @@
         <!-- Search Form -->
         <div>
           <form id="search-form" class="column">
+            <!-- City Field -->
             <label class="label" for="city-field">Search for a city:</label>
             <input
               id="city-field"
@@ -38,13 +40,16 @@
               type="text"
               placeholder="San Diego"
             />
+
+            <!-- Submit Button -->
             <button class="button" type="submit">Search</button>
           </form>
         </div>
 
         <!-- Search History -->
-        <div class="column">
-          <p class="label">Search history:</p>
+        <p class="label">Search history:</p>
+
+        <div id="search-history-list" class="column">
           <ul class="column">
             <li class="search-history-item">
               <button>Atlanta</button>
@@ -78,18 +83,24 @@
       <main class="box column">
         <!-- Today's Forecast -->
         <div id="forecast-for-today" class="column">
+          <!-- Selected City -->
           <h1 id="city-label">Atlanta ☀️</h1>
+
+          <!-- Today's Forecast -->
           <h3 class="label">Today's forecast:</h3>
 
-          <div id="today-data" class="column">
+          <div id="today-forecast-data" class="column">
+            <!-- Temperature -->
             <div class="row">
               <p class="emphasis">Temp:</p>
               <p>76.62°F</p>
             </div>
+            <!-- Wind Speed -->
             <div class="row">
               <p class="emphasis">Wind:</p>
               <p>8.43 MPH</p>
             </div>
+            <!-- Humidity -->
             <div class="row">
               <p class="emphasis">Humidity:</p>
               <p>44%</p>
@@ -101,7 +112,7 @@
         <div class="column">
           <h3 class="label">For the next 5 days:</h3>
 
-          <ul id="forecast-list" class="row">
+          <ul id="forecast-list">
             <!-- Day 1 -->
             <li class="column forecast-list-item">
               <h4>9-14-2022</h4>
@@ -194,10 +205,16 @@
 
     <!-- Footer -->
     <footer id="footer-box" class="box column">
+      <!-- Credits -->
       <h5 id="footer-title">Made by: Eduardo Sebastián Vela Alanís</h5>
+      <!-- Data Source -->
       <p>
         Data provided by: <a href="https://openweathermap.org">OpenWeather</a>
       </p>
     </footer>
   </body>
 </html>
+
+<!-- Resources -->
+<!-- https://blog.hubspot.com/website/hide-scrollbar-css -->
+<!-- https://www.w3schools.com/css/css_overflow.asp -->

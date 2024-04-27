@@ -62,9 +62,10 @@ ul {
   list-style: none;
 }
 
-/* The anchor elements will not be underlined */
+/* The anchor elements will not be underlined, and their color will be the website's text color */
 a {
   text-decoration: none;
+  color: var(--website-text-color);
 }
 
 /* Removes the default border and background color of the button */
