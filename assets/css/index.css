@@ -19,7 +19,7 @@
 /* Sidebar Grid Layout Class */
 .sidebar-grid-layout {
   display: grid;
-  grid-template-columns: 25rem 1fr;
+  grid-template-columns: 20rem 1fr;
   min-height: 100vh;
 }
 
@@ -27,12 +27,13 @@
   border-right: 1px solid var(--website-text-color);
 }
 
-/* Header */
+/* Header Box */
 #header-box {
   background-color: var(--header-background-color);
   border-bottom: 1px solid var(--website-text-color);
 }
 
+/* Header Title */
 #header-title {
   text-align: center;
   font-size: 1.75rem;
@@ -46,8 +47,7 @@
 
 /* Form Field Class */
 .form-field {
-  font-size: 1.125rem;
-  border: 3px solid var(--form-inactive-field-border-color);
+  border: 3px solid var(--form-field-border-color-inactive);
   border-radius: 10px;
   padding: 0.5rem 1rem;
   transition: border-color 0.5s ease;
@@ -61,7 +61,6 @@
 /* Button Class */
 .button {
   text-align: center;
-  font-size: 1.125rem;
   font-weight: 600;
   border-radius: 10px;
   padding: 0.75rem 1rem;
@@ -81,7 +80,7 @@
 
 /* Label Class */
 .label {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 500;
 }
 
@@ -89,7 +88,6 @@
 .search-history-item button {
   width: 100%;
   text-align: center;
-  font-size: 1.125rem;
   font-weight: 600;
   border-radius: 10px;
   padding: 0.75rem 1rem;
@@ -105,4 +103,54 @@
 
 .search-history-item button:focus {
   background-color: var(--secondary-button-color-focus);
+}
+
+/* Forecast For Today */
+#forecast-for-today {
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #e0f2fe;
+  margin-bottom: 2rem;
+}
+
+/* Today Data */
+.today-data div {
+  gap: 0.5rem;
+}
+
+/* City Label */
+#city-label {
+  font-size: 2.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+/* Forecast List */
+.forecast-list {
+  justify-content: space-between;
+}
+
+/* Forecast List Item */
+.forecast-list-item {
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #e0f2fe;
+}
+
+.forecast-list-item h4 {
+  font-weight: 600;
+}
+
+.forecast-list-item div {
+  gap: 0.5rem;
+}
+/* Weather Icon */
+.weather-icon {
+  font-size: 2rem;
+}
+
+/* Emphasis Class */
+.emphasis {
+  font-weight: 500;
 }

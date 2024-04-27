@@ -1,3 +1,4 @@
+/* Adding the website's colors to the root element so they can be used in any CSS file */
 :root {
   --website-background-color: #fafafa;
   --website-text-color: #0a0a0a;
@@ -6,7 +7,7 @@
   --primary-button-color-focus: #67e8f9;
   --secondary-button-color: #a3a3a3;
   --secondary-button-color-focus: #d4d4d4;
-  --form-inactive-field-border-color: #e5e5e5;
+  --form-field-border-color-inactive: #e5e5e5;
 }
 
 /* Margin and padding is removed for all elements, and border box dox sizing is applied to them */
