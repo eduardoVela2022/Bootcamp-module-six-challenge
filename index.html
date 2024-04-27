@@ -6,93 +6,198 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Title -->
     <title>Web Weather</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <!-- Body -->
   <body>
     <!-- Header -->
-    <header>
-      <h2>Web Weather</h2>
+    <header id="header-box" class="box">
+      <h2 id="header-title">Web Weather</h2>
     </header>
+
+    <div class="sidebar-grid-layout">
+      <!-- Sidebar -->
+      <aside class="box column">
+        <!-- Search Form -->
+        <div>
+          <form id="search-form" class="column">
+            <label class="label" for="city-field">Search for a city:</label>
+            <input
+              id="city-field"
+              class="form-field"
+              type="text"
+              placeholder="San Diego"
+            />
+            <button class="button" type="submit">Search</button>
+          </form>
+        </div>
+
+        <!-- Search History -->
+        <div class="column">
+          <p class="label">Search history:</p>
+          <ul class="column">
+            <li class="search-history-item">
+              <button>Atlanta</button>
+            </li>
+            <li class="search-history-item">
+              <button>Denver</button>
+            </li>
+            <li class="search-history-item">
+              <button>Seattle</button>
+            </li>
+            <li class="search-history-item">
+              <button>San Francisco</button>
+            </li>
+            <li class="search-history-item">
+              <button>Orlando</button>
+            </li>
+            <li class="search-history-item">
+              <button>New York</button>
+            </li>
+            <li class="search-history-item">
+              <button>Chicago</button>
+            </li>
+            <li class="search-history-item">
+              <button>Austin</button>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="box column">
+        <!-- Today's Forecast -->
+        <div id="forecast-for-today" class="column">
+          <h1 id="city-label">Atlanta ☀️</h1>
+          <h3 class="label">Today's forecast:</h3>
+
+          <div id="today-data" class="column">
+            <div class="row">
+              <p class="emphasis">Temp:</p>
+              <p>76.62°F</p>
+            </div>
+            <div class="row">
+              <p class="emphasis">Wind:</p>
+              <p>8.43 MPH</p>
+            </div>
+            <div class="row">
+              <p class="emphasis">Humidity:</p>
+              <p>44%</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5-Day Forecast -->
+        <div class="column">
+          <h3 class="label">For the next 5 days:</h3>
+
+          <ul id="forecast-list" class="row">
+            <!-- Day 1 -->
+            <li class="column forecast-list-item">
+              <h4>9-14-2022</h4>
+              <p class="weather-icon">☀️</p>
+              <div class="row">
+                <p class="emphasis">Temp:</p>
+                <p>76.62°F</p>
+              </div>
+              <div class="row">
+                <p class="emphasis">Wind:</p>
+                <p>8.43 MPH</p>
+              </div>
+              <div class="row">
+                <p class="emphasis">Humidity:</p>
+                <p>44%</p>
+              </div>
+            </li>
+            <!-- Day 2 -->
+            <li class="column forecast-list-item">
+              <h4>9-14-2022</h4>
+              <p class="weather-icon">☀️</p>
+              <div class="row">
+                <p class="emphasis">Temp:</p>
+                <p>76.62°F</p>
+              </div>
+              <div class="row">
+                <p class="emphasis">Wind:</p>
+                <p>8.43 MPH</p>
+              </div>
+              <div class="row">
+                <p class="emphasis">Humidity:</p>
+                <p>44%</p>
+              </div>
+            </li>
+            <!-- Day 3 -->
+            <li class="column forecast-list-item">
+              <h4>9-14-2022</h4>
+              <p class="weather-icon">☀️</p>
+              <div class="row">
+                <p class="emphasis">Temp:</p>
+                <p>76.62°F</p>
+              </div>
+              <div class="row">
+                <p class="emphasis">Wind:</p>
+                <p>8.43 MPH</p>
+              </div>
+              <div class="row">
+                <p class="emphasis">Humidity:</p>
+                <p>44%</p>
+              </div>
+            </li>
+            <!-- Day 4 -->
+            <li class="column forecast-list-item">
+              <h4>9-14-2022</h4>
+              <p class="weather-icon">☀️</p>
+              <div class="row">
+                <p class="emphasis">Temp:</p>
+                <p>76.62°F</p>
+              </div>
+              <div class="row">
+                <p class="emphasis">Wind:</p>
+                <p>8.43 MPH</p>
+              </div>
+              <div class="row">
+                <p class="emphasis">Humidity:</p>
+                <p>44%</p>
+              </div>
+            </li>
+            <!-- Day 5 -->
+            <li class="column forecast-list-item">
+              <h4>9-14-2022</h4>
+              <p class="weather-icon">☀️</p>
+              <div class="row">
+                <p class="emphasis">Temp:</p>
+                <p>76.62°F</p>
+              </div>
+              <div class="row">
+                <p class="emphasis">Wind:</p>
+                <p>8.43 MPH</p>
+              </div>
+              <div class="row">
+                <p class="emphasis">Humidity:</p>
+                <p>44%</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </main>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer-box" class="box column">
+      <h5 id="footer-title">Made by: Eduardo Sebastián Vela Alanís</h5>
+      <p>
+        Data provided by: <a href="https://openweathermap.org">OpenWeather</a>
+      </p>
+    </footer>
   </body>
-
-  <!-- Sidebar -->
-  <aside>
-    <!-- Search Form -->
-    <div>
-      <form>
-        <label for="city-field">Search for a city:</label>
-        <input id="city-field" type="search" placeholder="San Diego" />
-        <button type="submit">Search</button>
-      </form>
-    </div>
-
-    <!-- Search History -->
-    <div>
-      <ul>
-        <li>Atlanta</li>
-        <li>Denver</li>
-        <li>Seattle</li>
-        <li>San Francisco</li>
-        <li>Orlando</li>
-        <li>New York</li>
-        <li>Chicago</li>
-        <li>Austin</li>
-      </ul>
-    </div>
-  </aside>
-
-  <!-- Main Content -->
-  <main>
-    <!-- Today's Forecast -->
-    <div>
-      <h1>Atlanta (9/13/2022)</h1>
-
-      <p>Temp: 76.62°F</p>
-      <p>Wind: 8.43 MPH</p>
-      <p>Humidity: 44%</p>
-    </div>
-    <!-- 5-Day Forecast -->
-    <div>
-      <h3>5-Day Forecast</h3>
-
-      <ul>
-        <li>
-          <h4>9/14/2022</h4>
-          <p>☀️</p>
-          <p>Temp: 76.62°F</p>
-          <p>Wind: 8.43 MPH</p>
-          <p>Humidity: 44%</p>
-        </li>
-        <li>
-          <h4>9/14/2022</h4>
-          <p>☀️</p>
-          <p>Temp: 76.62°F</p>
-          <p>Wind: 8.43 MPH</p>
-          <p>Humidity: 44%</p>
-        </li>
-        <li>
-          <h4>9/14/2022</h4>
-          <p>☀️</p>
-          <p>Temp: 76.62°F</p>
-          <p>Wind: 8.43 MPH</p>
-          <p>Humidity: 44%</p>
-        </li>
-        <li>
-          <h4>9/14/2022</h4>
-          <p>☀️</p>
-          <p>Temp: 76.62°F</p>
-          <p>Wind: 8.43 MPH</p>
-          <p>Humidity: 44%</p>
-        </li>
-        <li>
-          <h4>9/14/2022</h4>
-          <p>☀️</p>
-          <p>Temp: 76.62°F</p>
-          <p>Wind: 8.43 MPH</p>
-          <p>Humidity: 44%</p>
-        </li>
-      </ul>
-    </div>
-  </main>
 </html>
