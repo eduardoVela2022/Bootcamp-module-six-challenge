@@ -25,11 +25,12 @@
 
 .sidebar-grid-layout aside {
   border-right: 1px solid var(--website-text-color);
+  padding-bottom: 6rem;
 }
 
 /* Header Box */
 #header-box {
-  background-color: var(--header-background-color);
+  background-color: var(--header-and-footer-background-color);
   border-bottom: 1px solid var(--website-text-color);
 }
 
@@ -109,12 +110,12 @@
 #forecast-for-today {
   padding: 1rem;
   border-radius: 10px;
-  background-color: #e0f2fe;
+  background-color: var(--sunny-forecast-color);
   margin-bottom: 2rem;
 }
 
 /* Today Data */
-.today-data div {
+#today-data div {
   gap: 0.5rem;
 }
 
@@ -126,7 +127,7 @@
 }
 
 /* Forecast List */
-.forecast-list {
+#forecast-list {
   justify-content: space-between;
 }
 
@@ -135,7 +136,7 @@
   align-items: center;
   padding: 1rem;
   border-radius: 10px;
-  background-color: #e0f2fe;
+  background-color: var(--sunny-forecast-color);
 }
 
 .forecast-list-item h4 {
@@ -152,5 +153,17 @@
 
 /* Emphasis Class */
 .emphasis {
+  font-weight: 500;
+}
+
+/* Footer Box */
+#footer-box {
+  text-align: center;
+  background-color: var(--header-and-footer-background-color);
+  border-top: 1px solid var(--website-text-color);
+}
+
+/* Footer Title */
+#footer-title {
   font-weight: 500;
 }

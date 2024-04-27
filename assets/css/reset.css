@@ -2,12 +2,13 @@
 :root {
   --website-background-color: #fafafa;
   --website-text-color: #0a0a0a;
-  --header-background-color: #cffafe;
+  --header-and-footer-background-color: #cffafe;
   --primary-button-color: #22d3ee;
   --primary-button-color-focus: #67e8f9;
   --secondary-button-color: #a3a3a3;
   --secondary-button-color-focus: #d4d4d4;
   --form-field-border-color-inactive: #e5e5e5;
+  --sunny-forecast-color: #e0f2fe;
 }
 
 /* Margin and padding is removed for all elements, and border box dox sizing is applied to them */
