@@ -42,41 +42,16 @@
             />
 
             <!-- Submit Button -->
-            <button class="button" type="submit">Search</button>
+            <button id="submit-button" class="button" type="submit">
+              Search
+            </button>
           </form>
         </div>
 
         <!-- Search History -->
         <p class="label">Search history:</p>
 
-        <div id="search-history-list" class="column">
-          <ul class="column">
-            <li class="search-history-item">
-              <button>Atlanta</button>
-            </li>
-            <li class="search-history-item">
-              <button>Denver</button>
-            </li>
-            <li class="search-history-item">
-              <button>Seattle</button>
-            </li>
-            <li class="search-history-item">
-              <button>San Francisco</button>
-            </li>
-            <li class="search-history-item">
-              <button>Orlando</button>
-            </li>
-            <li class="search-history-item">
-              <button>New York</button>
-            </li>
-            <li class="search-history-item">
-              <button>Chicago</button>
-            </li>
-            <li class="search-history-item">
-              <button>Austin</button>
-            </li>
-          </ul>
-        </div>
+        <div id="search-history-list-box" class="column"></div>
       </aside>
 
       <!-- Main Content -->
@@ -212,9 +187,13 @@
         Data provided by: <a href="https://openweathermap.org">OpenWeather</a>
       </p>
     </footer>
+
+    <script src="./assets/js/index.js"></script>
   </body>
 </html>
 
 <!-- Resources -->
 <!-- https://blog.hubspot.com/website/hide-scrollbar-css -->
 <!-- https://www.w3schools.com/css/css_overflow.asp -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild# -->
