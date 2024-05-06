@@ -141,7 +141,9 @@ function renderTodayForecast(todayData) {
   // Creates a new today's forecast header and adds it to it
   const newHeader = document.createElement("h1");
   newHeader.setAttribute("id", "city-label");
-  newHeader.textContent = `${todayData.name} ${todayData.weather.at(0).icon}`;
+  newHeader.textContent = `${todayData.name} ${getEmoji(
+    todayData.weather.at(0).icon
+  )}`;
   newTodayForecast.appendChild(newHeader);
 
   // Creates a new today's forecast label and adds it to it
@@ -208,7 +210,7 @@ function renderFiveDayForecast(fiveDayData) {
     // Creates the list item's weather icon and adds it to the list item
     const newWeatherIcon = document.createElement("p");
     newWeatherIcon.setAttribute("class", "weather-icon");
-    newWeatherIcon.textContent = item.weather.at(0).icon;
+    newWeatherIcon.textContent = getEmoji(item.weather.at(0).icon);
     newListItem.appendChild(newWeatherIcon);
 
     // Creates the list item's temperature div and adds it to the list item
@@ -271,6 +273,7 @@ function renderForecastWeatherDataDiv(parentElement, label, value) {
   parentElement.appendChild(newDataDiv);
 }
 
+// [TEST]
 function renderMainContent(weatherDataToday, weatherDataFiveDay) {
   // Generates the timestamps of the next five days from now
   const nextFiveDaysDates = [
@@ -285,6 +288,9 @@ function renderMainContent(weatherDataToday, weatherDataFiveDay) {
   const fiveDayData = weatherDataFiveDay.list.filter((item) =>
     nextFiveDaysDates.includes(item.dt_txt)
   );
+
+  // [TEST]
+  console.log(fiveDayData);
 
   // Renders the forecast for today
   renderTodayForecast(weatherDataToday);
@@ -333,7 +339,6 @@ async function getWeatherForecastToday(lat, lon) {
   return data;
 }
 
-// [TEST]
 async function getWeatherForecastFiveDay(lat, lon) {
   // Gets a five day forecast for the given latitude and longuitude in metric units
   const response = await fetch(
@@ -342,9 +347,6 @@ async function getWeatherForecastFiveDay(lat, lon) {
 
   // Converts the data to JSON
   const data = await response.json();
-
-  // [TEST]
-  console.log(data);
 
   // Returns data
   return data;
@@ -357,6 +359,39 @@ function loadLocalStorage() {
   // If the search history is null, it is set to an empty list
   if (!searchHistory) {
     searchHistory = [];
+  }
+}
+
+function getEmoji(weatherIcon) {
+  switch (weatherIcon) {
+    case "11d": // Thunderstorm
+      return "⛈️";
+    case "09d": // Drizzle
+      return "🌧️";
+    case "10d": // Rain
+      return "🌦️";
+    case "13d": // Snow
+      return "❄️";
+    case "50d": // Mist
+      return "☁️";
+    case "01d": // Clear
+      return "☀️";
+    case "01n":
+      return "☀️";
+    case "02d": // Few clouds
+      return "🌤️";
+    case "02n":
+      return "🌤️";
+    case "03d": // Scattered clouds
+      return "⛅️";
+    case "03n":
+      return "⛅️";
+    case "04d": // Broken clouds and overcast clouds
+      return "🌥️";
+    case "04n":
+      return "🌥️";
+    default:
+      return "";
   }
 }
 
