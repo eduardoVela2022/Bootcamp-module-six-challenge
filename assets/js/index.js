@@ -1,7 +1,10 @@
 // OpenWeather API key
 const API_KEY = "1e7f7d411e7d9fb65f6700dcf9e7d269";
+// Current city
+let currentCity = {};
 // Search history
 let searchHistory = [];
+// Main content has rendered?
 let renderedMainContent = false;
 
 // Form city field
@@ -45,6 +48,9 @@ async function handleSubmit(event) {
   // The new city is added to the search history
   searchHistory.unshift(newCity);
 
+  // The currently selected city is set to the new city
+  localStorage.setItem("currentCity", JSON.stringify(newCity));
+
   // The search history is saved in local storage
   localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 
@@ -77,8 +83,15 @@ async function handleSubmit(event) {
 }
 
 async function handleSearchHistoryClick(id) {
+  // If the current city is equal to the one in the search history, no data is fetched
+  if (id === currentCity.id) return;
+
   // Gets the clicked item from the search history list
   const item = searchHistory.filter((item) => item.id === id).at(0);
+
+  // The currently selected city is updated and saved into local storage
+  currentCity = item;
+  localStorage.setItem("currentCity", JSON.stringify(item));
 
   // Gets the weather forecast for today for the selected city
   const weatherDataToday = await getWeatherForecastToday(item.lat, item.lon);
@@ -355,13 +368,43 @@ async function getWeatherForecastFiveDay(lat, lon) {
 }
 
 function loadLocalStorage() {
+  // Currently selected city is retrived from local storage
+  currentCity = JSON.parse(localStorage.getItem("currentCity"));
   // The search history is retrieved from local storage
   searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
 
+  // If the currently selected city is null, it is set to an empty object
+  if (!currentCity) {
+    currentCity = {};
+  } else {
+    loadCurrentCity(currentCity);
+  }
   // If the search history is null, it is set to an empty list
   if (!searchHistory) {
     searchHistory = [];
   }
+
+  console.log(currentCity);
+}
+
+async function loadCurrentCity(currentCity) {
+  // Gets the weather forecast for today for the current city
+  const weatherDataToday = await getWeatherForecastToday(
+    currentCity.lat,
+    currentCity.lon
+  );
+
+  // Gets the 5 day weather forecast for the current city
+  const weatherDataFiveDay = await getWeatherForecastFiveDay(
+    currentCity.lat,
+    currentCity.lon
+  );
+
+  // Clears old main content, if it exists
+  clearMainContent();
+
+  // Renders the main content of the city with weather data of the selected city
+  renderMainContent(weatherDataToday, weatherDataFiveDay);
 }
 
 function getEmoji(weatherIcon) {
