@@ -42,164 +42,25 @@
             />
 
             <!-- Submit Button -->
-            <button class="button" type="submit">Search</button>
+            <button id="submit-button" class="button" type="submit">
+              Search
+            </button>
           </form>
         </div>
 
         <!-- Search History -->
         <p class="label">Search history:</p>
 
-        <div id="search-history-list" class="column">
-          <ul class="column">
-            <li class="search-history-item">
-              <button>Atlanta</button>
-            </li>
-            <li class="search-history-item">
-              <button>Denver</button>
-            </li>
-            <li class="search-history-item">
-              <button>Seattle</button>
-            </li>
-            <li class="search-history-item">
-              <button>San Francisco</button>
-            </li>
-            <li class="search-history-item">
-              <button>Orlando</button>
-            </li>
-            <li class="search-history-item">
-              <button>New York</button>
-            </li>
-            <li class="search-history-item">
-              <button>Chicago</button>
-            </li>
-            <li class="search-history-item">
-              <button>Austin</button>
-            </li>
-          </ul>
-        </div>
+        <div id="search-history-list-box" class="column"></div>
       </aside>
 
       <!-- Main Content -->
-      <main class="box column">
+      <main id="main-content" class="box column">
         <!-- Today's Forecast -->
-        <div id="forecast-for-today" class="column">
-          <!-- Selected City -->
-          <h1 id="city-label">Atlanta ☀️</h1>
-
-          <!-- Today's Forecast -->
-          <h3 class="label">Today's forecast:</h3>
-
-          <div id="today-forecast-data" class="column">
-            <!-- Temperature -->
-            <div class="row">
-              <p class="emphasis">Temp:</p>
-              <p>76.62°F</p>
-            </div>
-            <!-- Wind Speed -->
-            <div class="row">
-              <p class="emphasis">Wind:</p>
-              <p>8.43 MPH</p>
-            </div>
-            <!-- Humidity -->
-            <div class="row">
-              <p class="emphasis">Humidity:</p>
-              <p>44%</p>
-            </div>
-          </div>
-        </div>
+        <div id="forecast-for-today-box"></div>
 
         <!-- 5-Day Forecast -->
-        <div class="column">
-          <h3 class="label">For the next 5 days:</h3>
-
-          <ul id="forecast-list">
-            <!-- Day 1 -->
-            <li class="column forecast-list-item">
-              <h4>9-14-2022</h4>
-              <p class="weather-icon">☀️</p>
-              <div class="row">
-                <p class="emphasis">Temp:</p>
-                <p>76.62°F</p>
-              </div>
-              <div class="row">
-                <p class="emphasis">Wind:</p>
-                <p>8.43 MPH</p>
-              </div>
-              <div class="row">
-                <p class="emphasis">Humidity:</p>
-                <p>44%</p>
-              </div>
-            </li>
-            <!-- Day 2 -->
-            <li class="column forecast-list-item">
-              <h4>9-14-2022</h4>
-              <p class="weather-icon">☀️</p>
-              <div class="row">
-                <p class="emphasis">Temp:</p>
-                <p>76.62°F</p>
-              </div>
-              <div class="row">
-                <p class="emphasis">Wind:</p>
-                <p>8.43 MPH</p>
-              </div>
-              <div class="row">
-                <p class="emphasis">Humidity:</p>
-                <p>44%</p>
-              </div>
-            </li>
-            <!-- Day 3 -->
-            <li class="column forecast-list-item">
-              <h4>9-14-2022</h4>
-              <p class="weather-icon">☀️</p>
-              <div class="row">
-                <p class="emphasis">Temp:</p>
-                <p>76.62°F</p>
-              </div>
-              <div class="row">
-                <p class="emphasis">Wind:</p>
-                <p>8.43 MPH</p>
-              </div>
-              <div class="row">
-                <p class="emphasis">Humidity:</p>
-                <p>44%</p>
-              </div>
-            </li>
-            <!-- Day 4 -->
-            <li class="column forecast-list-item">
-              <h4>9-14-2022</h4>
-              <p class="weather-icon">☀️</p>
-              <div class="row">
-                <p class="emphasis">Temp:</p>
-                <p>76.62°F</p>
-              </div>
-              <div class="row">
-                <p class="emphasis">Wind:</p>
-                <p>8.43 MPH</p>
-              </div>
-              <div class="row">
-                <p class="emphasis">Humidity:</p>
-                <p>44%</p>
-              </div>
-            </li>
-            <!-- Day 5 -->
-            <li class="column forecast-list-item">
-              <h4>9-14-2022</h4>
-              <p class="weather-icon">☀️</p>
-              <div class="row">
-                <p class="emphasis">Temp:</p>
-                <p>76.62°F</p>
-              </div>
-              <div class="row">
-                <p class="emphasis">Wind:</p>
-                <p>8.43 MPH</p>
-              </div>
-              <div class="row">
-                <p class="emphasis">Humidity:</p>
-                <p>44%</p>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <div id="forecast-list-box" class="column"></div>
       </main>
     </div>
 
@@ -212,9 +73,18 @@
         Data provided by: <a href="https://openweathermap.org">OpenWeather</a>
       </p>
     </footer>
+
+    <!-- Day JS -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <!-- JavaScript -->
+    <script src="./assets/js/index.js"></script>
   </body>
 </html>
 
 <!-- Resources -->
 <!-- https://blog.hubspot.com/website/hide-scrollbar-css -->
 <!-- https://www.w3schools.com/css/css_overflow.asp -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild# -->
+<!-- https://openweathermap.org/forecast5#list -->
+<!-- https://openweathermap.org/api/geocoding-api#direct -->

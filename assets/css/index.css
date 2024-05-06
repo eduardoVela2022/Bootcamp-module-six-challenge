@@ -208,13 +208,13 @@ Also a row gap is added to separate the rows of the grid. */
 
   /* Makes the search history list scrollable, 
   and removes the default scroll bar that is added by the overflow-y attribute. */
-  #search-history-list {
+  #search-history-list-box {
     overflow-y: scroll;
     scrollbar-width: none;
     padding-bottom: 4rem;
   }
 
-  #search-history-list::-webkit-scrollbar {
+  #search-history-list-box::-webkit-scrollbar {
     display: none;
   }
 
