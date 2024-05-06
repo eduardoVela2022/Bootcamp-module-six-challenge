@@ -204,7 +204,9 @@ function renderFiveDayForecast(fiveDayData) {
 
     // Creates the list item's h4 header and adds it to the list item
     const newHeader = document.createElement("h4");
-    newHeader.textContent = item.dt_txt;
+    // Removes the time from the date
+    const dateArray = item.dt_txt.split(" ");
+    newHeader.textContent = dateArray.at(0);
     newListItem.appendChild(newHeader);
 
     // Creates the list item's weather icon and adds it to the list item
@@ -363,6 +365,7 @@ function loadLocalStorage() {
 }
 
 function getEmoji(weatherIcon) {
+  // Converts the Open Weather icon code into an emoji
   switch (weatherIcon) {
     case "11d": // Thunderstorm
       return "⛈️";
