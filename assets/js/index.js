@@ -2,6 +2,7 @@
 const API_KEY = "1e7f7d411e7d9fb65f6700dcf9e7d269";
 // Search history
 let searchHistory = [];
+let renderedMainContent = false;
 
 // Form city field
 const cityField = document.querySelector("#city-field");
@@ -68,14 +69,31 @@ async function handleSubmit(event) {
     selectedCity.lon
   );
 
+  // Clears old main content, if it exists
+  clearMainContent();
+
   // Renders the main content of the city with weather data of the selected city
   renderMainContent(weatherDataToday, weatherDataFiveDay);
 }
 
-function handleSearchHistoryClick(id) {
+async function handleSearchHistoryClick(id) {
   // Gets the clicked item from the search history list
   const item = searchHistory.filter((item) => item.id === id).at(0);
-  console.log(item);
+
+  // Gets the weather forecast for today for the selected city
+  const weatherDataToday = await getWeatherForecastToday(item.lat, item.lon);
+
+  // Gets the 5 day weather forecast for the selected city
+  const weatherDataFiveDay = await getWeatherForecastFiveDay(
+    item.lat,
+    item.lon
+  );
+
+  // Clears old main content, if it exists
+  clearMainContent();
+
+  // Renders the main content of the city with weather data of the selected city
+  renderMainContent(weatherDataToday, weatherDataFiveDay);
 }
 
 function renderSearchHistory() {
@@ -225,6 +243,14 @@ function renderFiveDayForecast(fiveDayData) {
   forecastListDiv.appendChild(newForecastList);
 }
 
+function clearFiveDayForecast() {
+  // Removes the old five day forecast from the DOM
+  const oldLabel = document.getElementById("forecast-list-label");
+  oldLabel.remove();
+  const oldFiveDayForecast = document.getElementById("forecast-list");
+  oldFiveDayForecast.remove();
+}
+
 function renderForecastWeatherDataDiv(parentElement, label, value) {
   // Creates a new data div
   const newDataDiv = document.createElement("div");
@@ -243,14 +269,6 @@ function renderForecastWeatherDataDiv(parentElement, label, value) {
 
   // Adds the new data div to the list item
   parentElement.appendChild(newDataDiv);
-}
-
-function clearFiveDayForecast() {
-  // Removes the old five day forecast from the DOM
-  const oldLabel = document.getElementById("forecast-list-label");
-  oldLabel.remove();
-  const oldFiveDayForecast = document.getElementById("forecast-list");
-  oldFiveDayForecast.remove();
 }
 
 function renderMainContent(weatherDataToday, weatherDataFiveDay) {
@@ -273,6 +291,16 @@ function renderMainContent(weatherDataToday, weatherDataFiveDay) {
 
   // Renders the forecast for the next five days
   renderFiveDayForecast(fiveDayData);
+}
+
+function clearMainContent() {
+  // Clears old main content, if it exists
+  if (renderedMainContent) {
+    clearTodayForecast();
+    clearFiveDayForecast();
+  } else {
+    renderedMainContent = true;
+  }
 }
 
 async function directGeocoding(cityName) {
