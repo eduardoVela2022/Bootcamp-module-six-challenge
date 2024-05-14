@@ -115,6 +115,14 @@ function renderSearchHistory() {
   newSearchHistoryList.setAttribute("id", "search-history-list");
   newSearchHistoryList.setAttribute("class", "column");
 
+  // If search history is empty, it will render a message that it is empty
+  if (searchHistory.length === 0) {
+    // Message is created and added to the search history list
+    const emptyMessage = document.createElement("li");
+    emptyMessage.textContent = "Your search history is empty.";
+    newSearchHistoryList.appendChild(emptyMessage);
+  }
+
   // Creates a new list item for each element of the search history array
   for (const item of searchHistory) {
     // Creates the new list item
@@ -146,6 +154,12 @@ function clearSearchHistory() {
 }
 
 function renderTodayForecast(todayData) {
+  // Removes the empty main content message
+  const emptyMainContentMessage = document.getElementById(
+    "empty-main-content-message"
+  );
+  emptyMainContentMessage.remove();
+
   // Creates a new today's forecast element
   const newTodayForecast = document.createElement("div");
   newTodayForecast.setAttribute("id", "forecast-for-today");
