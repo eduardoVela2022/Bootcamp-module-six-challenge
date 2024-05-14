@@ -1,7 +1,10 @@
 // OpenWeather API key
 const API_KEY = "1e7f7d411e7d9fb65f6700dcf9e7d269";
+// Current city
+let currentCity = {};
 // Search history
 let searchHistory = [];
+// Main content has rendered?
 let renderedMainContent = false;
 
 // Form city field
@@ -45,6 +48,9 @@ async function handleSubmit(event) {
   // The new city is added to the search history
   searchHistory.unshift(newCity);
 
+  // The currently selected city is set to the new city
+  localStorage.setItem("currentCity", JSON.stringify(newCity));
+
   // The search history is saved in local storage
   localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 
@@ -77,8 +83,15 @@ async function handleSubmit(event) {
 }
 
 async function handleSearchHistoryClick(id) {
+  // If the current city is equal to the one in the search history, no data is fetched
+  if (id === currentCity.id) return;
+
   // Gets the clicked item from the search history list
   const item = searchHistory.filter((item) => item.id === id).at(0);
+
+  // The currently selected city is updated and saved into local storage
+  currentCity = item;
+  localStorage.setItem("currentCity", JSON.stringify(item));
 
   // Gets the weather forecast for today for the selected city
   const weatherDataToday = await getWeatherForecastToday(item.lat, item.lon);
@@ -101,6 +114,14 @@ function renderSearchHistory() {
   const newSearchHistoryList = document.createElement("ul");
   newSearchHistoryList.setAttribute("id", "search-history-list");
   newSearchHistoryList.setAttribute("class", "column");
+
+  // If search history is empty, it will render a message that it is empty
+  if (searchHistory.length === 0) {
+    // Message is created and added to the search history list
+    const emptyMessage = document.createElement("li");
+    emptyMessage.textContent = "Your search history is empty.";
+    newSearchHistoryList.appendChild(emptyMessage);
+  }
 
   // Creates a new list item for each element of the search history array
   for (const item of searchHistory) {
@@ -133,6 +154,12 @@ function clearSearchHistory() {
 }
 
 function renderTodayForecast(todayData) {
+  // Removes the empty main content message
+  const emptyMainContentMessage = document.getElementById(
+    "empty-main-content-message"
+  );
+  emptyMainContentMessage.remove();
+
   // Creates a new today's forecast element
   const newTodayForecast = document.createElement("div");
   newTodayForecast.setAttribute("id", "forecast-for-today");
@@ -141,7 +168,9 @@ function renderTodayForecast(todayData) {
   // Creates a new today's forecast header and adds it to it
   const newHeader = document.createElement("h1");
   newHeader.setAttribute("id", "city-label");
-  newHeader.textContent = `${todayData.name} ${todayData.weather.at(0).icon}`;
+  newHeader.textContent = `${todayData.name} ${getEmoji(
+    todayData.weather.at(0).icon
+  )}`;
   newTodayForecast.appendChild(newHeader);
 
   // Creates a new today's forecast label and adds it to it
@@ -202,13 +231,15 @@ function renderFiveDayForecast(fiveDayData) {
 
     // Creates the list item's h4 header and adds it to the list item
     const newHeader = document.createElement("h4");
-    newHeader.textContent = item.dt_txt;
+    // Removes the time from the date
+    const dateArray = item.dt_txt.split(" ");
+    newHeader.textContent = dateArray.at(0);
     newListItem.appendChild(newHeader);
 
     // Creates the list item's weather icon and adds it to the list item
     const newWeatherIcon = document.createElement("p");
     newWeatherIcon.setAttribute("class", "weather-icon");
-    newWeatherIcon.textContent = item.weather.at(0).icon;
+    newWeatherIcon.textContent = getEmoji(item.weather.at(0).icon);
     newListItem.appendChild(newWeatherIcon);
 
     // Creates the list item's temperature div and adds it to the list item
@@ -271,6 +302,7 @@ function renderForecastWeatherDataDiv(parentElement, label, value) {
   parentElement.appendChild(newDataDiv);
 }
 
+// [TEST]
 function renderMainContent(weatherDataToday, weatherDataFiveDay) {
   // Generates the timestamps of the next five days from now
   const nextFiveDaysDates = [
@@ -285,6 +317,9 @@ function renderMainContent(weatherDataToday, weatherDataFiveDay) {
   const fiveDayData = weatherDataFiveDay.list.filter((item) =>
     nextFiveDaysDates.includes(item.dt_txt)
   );
+
+  // [TEST]
+  console.log(fiveDayData);
 
   // Renders the forecast for today
   renderTodayForecast(weatherDataToday);
@@ -333,7 +368,6 @@ async function getWeatherForecastToday(lat, lon) {
   return data;
 }
 
-// [TEST]
 async function getWeatherForecastFiveDay(lat, lon) {
   // Gets a five day forecast for the given latitude and longuitude in metric units
   const response = await fetch(
@@ -343,20 +377,81 @@ async function getWeatherForecastFiveDay(lat, lon) {
   // Converts the data to JSON
   const data = await response.json();
 
-  // [TEST]
-  console.log(data);
-
   // Returns data
   return data;
 }
 
 function loadLocalStorage() {
+  // Currently selected city is retrived from local storage
+  currentCity = JSON.parse(localStorage.getItem("currentCity"));
   // The search history is retrieved from local storage
   searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
 
+  // If the currently selected city is null, it is set to an empty object
+  if (!currentCity) {
+    currentCity = {};
+  } else {
+    loadCurrentCity(currentCity);
+  }
   // If the search history is null, it is set to an empty list
   if (!searchHistory) {
     searchHistory = [];
+  }
+
+  console.log(currentCity);
+}
+
+async function loadCurrentCity(currentCity) {
+  // Gets the weather forecast for today for the current city
+  const weatherDataToday = await getWeatherForecastToday(
+    currentCity.lat,
+    currentCity.lon
+  );
+
+  // Gets the 5 day weather forecast for the current city
+  const weatherDataFiveDay = await getWeatherForecastFiveDay(
+    currentCity.lat,
+    currentCity.lon
+  );
+
+  // Clears old main content, if it exists
+  clearMainContent();
+
+  // Renders the main content of the city with weather data of the selected city
+  renderMainContent(weatherDataToday, weatherDataFiveDay);
+}
+
+function getEmoji(weatherIcon) {
+  // Converts the Open Weather icon code into an emoji
+  switch (weatherIcon) {
+    case "11d": // Thunderstorm
+      return "⛈️";
+    case "09d": // Drizzle
+      return "🌧️";
+    case "10d": // Rain
+      return "🌦️";
+    case "13d": // Snow
+      return "❄️";
+    case "50d": // Mist
+      return "☁️";
+    case "01d": // Clear
+      return "☀️";
+    case "01n":
+      return "☀️";
+    case "02d": // Few clouds
+      return "🌤️";
+    case "02n":
+      return "🌤️";
+    case "03d": // Scattered clouds
+      return "⛅️";
+    case "03n":
+      return "⛅️";
+    case "04d": // Broken clouds and overcast clouds
+      return "🌥️";
+    case "04n":
+      return "🌥️";
+    default:
+      return "";
   }
 }
 
