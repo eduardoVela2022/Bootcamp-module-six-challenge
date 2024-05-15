@@ -9,6 +9,10 @@ let renderedMainContent = false;
 
 // Form city field
 const cityField = document.querySelector("#city-field");
+// Form city field error message
+const cityFieldErrorMessage = document.querySelector(
+  "#search-form-error-message"
+);
 // Form submit button
 const submitButton = document.querySelector("#submit-button");
 // Search history
@@ -30,6 +34,16 @@ async function handleSubmit(event) {
 
   // The city the user selected
   const selectedCity = geocodingData.at(0);
+
+  // If the city was not found, return and display an error message
+  if (!selectedCity) {
+    cityFieldErrorMessage.removeAttribute("class", "hidden");
+    return;
+  }
+  // If there is a city and the error message is being shown, hide the error message
+  else if (!cityFieldErrorMessage.getAttribute("class", "hidden")) {
+    cityFieldErrorMessage.setAttribute("class", "hidden");
+  }
 
   // A new city item is created
   const newCity = {
@@ -306,8 +320,6 @@ function renderMainContent(weatherDataToday, weatherDataFiveDay) {
   const fiveDayData = weatherDataFiveDay.list.filter((item) =>
     nextFiveDaysDates.includes(item.dt_txt)
   );
-
-  console.log(fiveDayData);
 
   // Renders the forecast for today
   renderTodayForecast(weatherDataToday);

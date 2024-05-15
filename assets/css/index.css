@@ -59,6 +59,17 @@
   border-color: var(--primary-button-color-focus);
 }
 
+/* Search Form Error Button */
+#search-form-error-message {
+  font-weight: 500;
+  color: #dc2626;
+}
+
+/* Hidden Class */
+.hidden {
+  display: none;
+}
+
 /* Button Class */
 .button {
   text-align: center;
