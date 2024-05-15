@@ -29,6 +29,16 @@ async function handleSubmit(event) {
   // Gets the city name from the form's city field
   const cityName = cityField.value;
 
+  // If the city field is empty, return and display an error message
+  if (cityName === "") {
+    cityFieldErrorMessage.removeAttribute("class", "hidden");
+    return;
+  }
+  // If the city field has a value and the error message is being shown, hide the error message
+  else if (!cityFieldErrorMessage.getAttribute("class", "hidden")) {
+    cityFieldErrorMessage.setAttribute("class", "hidden");
+  }
+
   // Gets the cities with that city name
   const geocodingData = await directGeocoding(cityName);
 
@@ -346,7 +356,7 @@ function clearMainContent() {
 async function directGeocoding(cityName) {
   // Gets all the cities that have the given city name
   const response = await fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${API_KEY}`
+    `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${API_KEY}`
   );
 
   // Converts the data to JSON
@@ -372,7 +382,7 @@ async function getWeatherForecastToday(lat, lon) {
 async function getWeatherForecastFiveDay(lat, lon) {
   // Gets a five day forecast for the given latitude and longuitude in metric units
   const response = await fetch(
-    `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
   );
 
   // Converts the data to JSON
