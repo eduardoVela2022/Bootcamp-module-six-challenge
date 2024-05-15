@@ -18,7 +18,6 @@ const forecastForTodayDiv = document.querySelector("#forecast-for-today-box");
 // Forecast list
 const forecastListDiv = document.querySelector("#forecast-list-box");
 
-// [TEST]
 async function handleSubmit(event) {
   // Prevents submit event from reloading the website
   event.preventDefault();
@@ -28,9 +27,6 @@ async function handleSubmit(event) {
 
   // Gets the cities with that city name
   const geocodingData = await directGeocoding(cityName);
-
-  // [TEST]
-  console.log(geocodingData);
 
   // The city the user selected
   const selectedCity = geocodingData.at(0);
@@ -154,12 +150,6 @@ function clearSearchHistory() {
 }
 
 function renderTodayForecast(todayData) {
-  // Removes the empty main content message
-  const emptyMainContentMessage = document.getElementById(
-    "empty-main-content-message"
-  );
-  emptyMainContentMessage.remove();
-
   // Creates a new today's forecast element
   const newTodayForecast = document.createElement("div");
   newTodayForecast.setAttribute("id", "forecast-for-today");
@@ -302,7 +292,6 @@ function renderForecastWeatherDataDiv(parentElement, label, value) {
   parentElement.appendChild(newDataDiv);
 }
 
-// [TEST]
 function renderMainContent(weatherDataToday, weatherDataFiveDay) {
   // Generates the timestamps of the next five days from now
   const nextFiveDaysDates = [
@@ -318,7 +307,6 @@ function renderMainContent(weatherDataToday, weatherDataFiveDay) {
     nextFiveDaysDates.includes(item.dt_txt)
   );
 
-  // [TEST]
   console.log(fiveDayData);
 
   // Renders the forecast for today
@@ -335,13 +323,18 @@ function clearMainContent() {
     clearFiveDayForecast();
   } else {
     renderedMainContent = true;
+    // Removes the empty main content message
+    const emptyMainContentMessage = document.getElementById(
+      "empty-main-content-message"
+    );
+    emptyMainContentMessage.remove();
   }
 }
 
 async function directGeocoding(cityName) {
   // Gets all the cities that have the given city name
   const response = await fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${API_KEY}`
+    `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${API_KEY}`
   );
 
   // Converts the data to JSON
@@ -351,7 +344,6 @@ async function directGeocoding(cityName) {
   return data;
 }
 
-// [TEST]
 async function getWeatherForecastToday(lat, lon) {
   // Gets the weather forecast for today
   const response = await fetch(
@@ -360,9 +352,6 @@ async function getWeatherForecastToday(lat, lon) {
 
   // Converts the data to JSON
   const data = await response.json();
-
-  //[TEST]
-  console.log(data);
 
   // Returns data
   return data;
@@ -397,8 +386,6 @@ function loadLocalStorage() {
   if (!searchHistory) {
     searchHistory = [];
   }
-
-  console.log(currentCity);
 }
 
 async function loadCurrentCity(currentCity) {
@@ -426,13 +413,23 @@ function getEmoji(weatherIcon) {
   switch (weatherIcon) {
     case "11d": // Thunderstorm
       return "⛈️";
+    case "11n": // Thunderstorm
+      return "⛈️";
     case "09d": // Drizzle
+      return "🌧️";
+    case "09n":
       return "🌧️";
     case "10d": // Rain
       return "🌦️";
+    case "10n":
+      return "🌦️";
     case "13d": // Snow
       return "❄️";
+    case "13n": // Snow
+      return "❄️";
     case "50d": // Mist
+      return "☁️";
+    case "50n": // Mist
       return "☁️";
     case "01d": // Clear
       return "☀️";
